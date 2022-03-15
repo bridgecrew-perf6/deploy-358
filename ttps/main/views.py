@@ -4,6 +4,7 @@ from .forms import ContactForm, TourismForm
 from .ml_model import logic_layer
 from django.contrib import messages
 # Create your views here.
+from .models import  StoreField
 res = None
 
 def index(request):
@@ -32,6 +33,9 @@ def index2(request):
             x = [quarter, mode, purpose, year, duration, country, spends, 0.38]
             global res
             res = logic_layer(x)
+            field=StoreField(quarter=quarter,mode=mode,purpose=purpose,year=year,duration=duration,country=country,spends=spends,prediction=res)
+            field.save()
+            print("data save......")
             return redirect("/predict")
         else:
             problem = form.errors.as_data()

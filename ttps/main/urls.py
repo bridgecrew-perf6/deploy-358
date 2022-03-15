@@ -9,4 +9,5 @@ urlpatterns = [
     path('predict', views.predict, name="predict"),
     path('about/', views.about, name="about"),
     path('under_construction', views.under_construction, name="under_construction"),
+   
 ]
